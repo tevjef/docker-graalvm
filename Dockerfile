@@ -1,4 +1,4 @@
-FROM oracle/graalvm-ce
+FROM openjdk:8-jdk-slim
 
 LABEL maintainer="marc@circleci.com"
 
