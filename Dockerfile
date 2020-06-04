@@ -1,4 +1,4 @@
-FROM oracle/graalvm-c
+FROM oracle/graalvm-ce
 
 LABEL maintainer="marc@circleci.com"
 
