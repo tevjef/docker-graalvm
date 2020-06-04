@@ -160,10 +160,17 @@ RUN sudo mkdir -p ${android_home} && \
     unzip -q /tmp/${sdk_version} -d ${android_home} && \
     rm /tmp/${sdk_version}
 
+RUN 
 # Set environmental variables
 ENV ANDROID_HOME ${android_home}
 ENV ADB_INSTALL_TIMEOUT 120
 ENV PATH=${ANDROID_HOME}/emulator:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools:${PATH}
+
+RUN mkdir /usr/local/graalvm-ce
+RUN wget -O /usr/local/graalvm-ce -t 5 "https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.1.0/graalvm-ce-java8-linux-amd64-20.1.0.tar.gz"
+RUN tar -xf graalvm-ce-java8-linux-amd64-20.1.0.tar.gz -C /usr/local/graalvm-ce
+ENV JAVA_HOME /usr/local/graalvm-ce
+ENV PATH $JAVA_HOME/bin:$PATH
 
 RUN mkdir ~/.android && echo '### User Sources for Android SDK Manager' > ~/.android/repositories.cfg
 
